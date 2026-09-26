@@ -52,7 +52,7 @@ st.markdown(
 )
 
 
-# --- FUNÇÕES DE GRÁFICOS INTEGRADAS ---
+# --- FUNÇÕES DE GRÁFICOS INTEGRADAS (Com dragmode="pan" para movimentação livre) ---
 def criar_grafico_linhas(df_diario):
     fig = px.line(
         df_diario,
@@ -67,6 +67,7 @@ def criar_grafico_linhas(df_diario):
         paper_bgcolor="rgba(0,0,0,0)",
         font=dict(family="Inter, sans-serif"),
         margin=dict(l=20, r=20, t=50, b=20),
+        dragmode="pan",  # Permite mover o gráfico ao arrastar o mouse
     )
     fig.update_xaxes(showgrid=True, gridwidth=1, gridcolor="#E5E7EB")
     fig.update_yaxes(showgrid=True, gridwidth=1, gridcolor="#E5E7EB")
@@ -89,6 +90,7 @@ def criar_grafico_barras(df_loja):
         font=dict(family="Inter, sans-serif"),
         showlegend=False,
         margin=dict(l=20, r=20, t=50, b=20),
+        dragmode="pan",  # Permite mover o gráfico ao arrastar o mouse
     )
     fig.update_xaxes(showgrid=False)
     fig.update_yaxes(showgrid=True, gridwidth=1, gridcolor="#E5E7EB")
@@ -111,6 +113,7 @@ def criar_grafico_rosca(df_loja):
         paper_bgcolor="rgba(0,0,0,0)",
         font=dict(family="Inter, sans-serif"),
         margin=dict(l=20, r=20, t=50, b=20),
+        dragmode="pan",  # Permite mover o gráfico ao arrastar o mouse
     )
     return fig
 
@@ -132,6 +135,7 @@ def criar_grafico_barras_horizontal(df_produto):
         font=dict(family="Inter, sans-serif"),
         showlegend=False,
         margin=dict(l=20, r=20, t=50, b=20),
+        dragmode="pan",  # Permite mover o gráfico ao arrastar o mouse
     )
     fig.update_xaxes(showgrid=True, gridwidth=1, gridcolor="#E5E7EB")
     fig.update_yaxes(showgrid=False, categoryorder="total ascending")
@@ -288,9 +292,7 @@ elif opcao_menu == "📉 Comparativo por Lojas":
     )
 
 elif opcao_menu == "🔴 Participação por Lojas":
-    st.subheader(
-        "🔴 Participação Percentual do Faturamento por Loja"
-    )
+    st.subheader("🔴 Participação Percentual do Faturamento por Loja")
     st.plotly_chart(criar_grafico_rosca(df_loja), width="stretch")
 
     st.markdown("### 📋 Tabela de Faturamento por Loja")
